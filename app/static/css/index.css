@@ -1,0 +1,13 @@
+body{
+    background-attachment: fixed;
+    background: url(../photos/pexels-george-desipris-792381.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: rgb(233, 224, 218);
+    min-height: 100vh; 
+    
+
+}
+
+
