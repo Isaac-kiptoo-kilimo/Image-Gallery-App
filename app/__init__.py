@@ -5,6 +5,12 @@ from flask_bootstrap import Bootstrap
 
 from config import config_options
 
+
+
+UPLOAD_FOLDER = 'static/uploads/'
+
+
+
 bootstrap = Bootstrap()
 # db = SQLAlchemy()
 # from flask_uploads import UploadSet,configure_uploads,IMAGES
@@ -14,11 +20,18 @@ bootstrap = Bootstrap()
 # login_manager.session_protection = 'strong'
 # login_manager.login_view = 'auth.login'
 
-
 # photos = UploadSet('photos',IMAGES)
 def create_app(config_name):
+  
 
     app = Flask(__name__)
+    
+    app.secret_key = "SECRET KEY"
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+   
+
+
 
     # Creating the app configurations
     app.config.from_object(config_options[config_name])
