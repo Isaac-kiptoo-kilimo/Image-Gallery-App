@@ -4,6 +4,5 @@ start.sh
 venv
 .vscode/
 commands/
-
-__pycache__/
+.__pycache__/
 
