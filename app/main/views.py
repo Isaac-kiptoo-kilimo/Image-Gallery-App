@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,abort,flash
 from . import main
 # from ..requests import 
 # from .forms import 
-# from ..models import User
+from ..models import User,Image,Category
 from .. import db,photos
 
 # from flask_login import login_required,current_user
@@ -12,8 +12,8 @@ def index():
     
 
     return render_template('main/index.html')
-
-@main.route('/upload-image',methods=['GET','POST'])
+# ****************************************************************************************************************************#
+@main.route('/upload_image',methods=['GET','POST'])
 #@login_required
 def upload_image(uname):
     user = User.query.filter_by(username = uname).first()
