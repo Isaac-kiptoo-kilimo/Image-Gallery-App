@@ -1,5 +1,4 @@
-from msilib.schema import Class
-from unicodedata import category
+
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
@@ -50,8 +49,8 @@ def load_user(user_id):
 class Image(db.Model):
     __tablename__='images'
     id=db.Column(db.Integer,primary_key=True)
-    image_name=db.Column(db.Text)
     title=db.Column(db.String(255))
+    imagename=db.Column(db.Text)
     content=db.Column(db.Text)
     img=db.Column(db.Text,unique=True,nullable=False)
     image_types=db.Column(db.Text)
@@ -59,13 +58,20 @@ class Image(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
     posted_at=db.Column(db.DateTime,default=datetime.utcnow)
 
+    def __repr__(self):
+      return self.title
+
 class Category(db.Models):
     __tablename__= 'categories'
     id=db.Column(db.Integer,primary_key=True)
-    name_ = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
     images = db.relationship('Image', backref='category', lazy=True)
+
+    def __repr__(self):
+      return self.name
+
 
 class Review(db.Model):
 
@@ -88,5 +94,7 @@ class Review(db.Model):
         reviews = Review.query.filter_by(image_id=id).all()
         return reviews
 
+    def __repr__(self):
+        return self.image_title
 
 
