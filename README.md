@@ -1,4 +1,4 @@
-# Flask Strater Files
+# Image Gallery App
 
 ## Description
 

@@ -7,6 +7,7 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     # SQLALCHEMY_DATABASE_URI=os.environ.get('SQLALCHEMY_DATABASE_URL')
     SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://moringa:isaac@localhost/images'
+    UPLOADED_PHOTOS_DEST ='app/static/photos'
     
 
 
