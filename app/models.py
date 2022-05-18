@@ -1,6 +1,5 @@
-from pyexpat import model
-from tkinter import image_names, image_types
-from turtle import title
+from msilib.schema import Class
+from unicodedata import category
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
@@ -11,8 +10,8 @@ from datetime import datetime
 class User(UserMixin,db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(255), unique=True, nullable=False)
     fullname = db.Column(db.String(255), nullable=False)
+    username = db.Column(db.String(255), unique=True, nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     bio = db.Column(db.String(1000))
@@ -25,8 +24,7 @@ class User(UserMixin,db.Model):
     images = db.relationship('Image', backref='user', lazy=True)
     reviews = db.relationship('Review', backref='user', lazy=True)
 
-    def __repr__(self):
-      return self.fullname
+    
 
     @property
     def password(self):
@@ -40,6 +38,9 @@ class User(UserMixin,db.Model):
     def verify_password(self,password):
         return check_password_hash(self.password_secure,password)
 
+    def __repr__(self):
+      return self.fullname
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -49,14 +50,22 @@ def load_user(user_id):
 class Image(db.Model):
     __tablename__='images'
     id=db.Column(db.Integer,primary_key=True)
-    title=db.Column(db.String(255))
     image_name=db.Column(db.Text)
+    title=db.Column(db.String(255))
+    content=db.Column(db.Text)
     img=db.Column(db.Text,unique=True,nullable=False)
     image_types=db.Column(db.Text)
     size=db.Column(db.Integer)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
     posted_at=db.Column(db.DateTime,default=datetime.utcnow)
 
+class Category(db.Models):
+    __tablename__= 'categories'
+    id=db.Column(db.Integer,primary_key=True)
+    name_ = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+    images = db.relationship('Image', backref='category', lazy=True)
 
 class Review(db.Model):
 
