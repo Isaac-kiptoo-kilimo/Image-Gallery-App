@@ -2,6 +2,7 @@ from flask import render_template,request,redirect,url_for,abort,flash
 from . import main
 # from ..requests import 
 # from .forms import 
+
 from ..models import User,Image,Category
 from .. import db,photos
 
@@ -12,15 +13,17 @@ def index():
     
 
     return render_template('main/index.html')
+
 # ****************************************************************************************************************************#
-@main.route('/upload_image',methods=['GET','POST'])
+
+
+
+@main.route('/upload-image',methods=['GET','POST'])
+
 #@login_required
-def upload_image(uname):
-    user = User.query.filter_by(username = uname).first()
-    if 'photo' in request.files:
-        filename = photos.save(request.files['photo'])
-        path = f'photos/{filename}'
-        user.profile_pic_path = path
-        db.session.commit()
-        return redirect(url_for('main.index',uname=uname))
+def upload_image():
+    if request.method == 'POST':
+        if request.files:
+            image = request.files['image']
+            
     return render_template('main/upload_image.html')
