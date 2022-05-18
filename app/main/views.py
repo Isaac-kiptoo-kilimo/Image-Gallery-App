@@ -1,9 +1,7 @@
 from flask import render_template, request, redirect, url_for, abort, flash
-
 import app
 from . import main
 import urllib.request
-from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 import os
 # from ..requests import
@@ -22,11 +20,11 @@ def index():
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 	
-main.route('/')
+@main.route('/')
 def upload_form():
-	return render_template('upload.html')
+	return render_template('main/upload.html')
 
-main.route('/', methods=['POST'])
+@main.route('/', methods=['POST'])
 def upload_image():
 	if 'file' not in request.files:
 		flash('No file part')
@@ -40,12 +38,12 @@ def upload_image():
 		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 		#print('upload_image filename: ' + filename)
 		flash('Image successfully uploaded and displayed below')
-		return render_template('upload.html', filename=filename)
+		return render_template('main/upload.html', filename=filename)
 	else:
 		flash('Allowed image types are -> png, jpg, jpeg, gif')
 		return redirect(request.url)
 
-main.route('/display/<filename>')
+@main.route('/display/<filename>')
 def display_image(filename):
 	#print('display_image filename: ' + filename)
 	return redirect(url_for('static', filename='uploads/' + filename), code=301)

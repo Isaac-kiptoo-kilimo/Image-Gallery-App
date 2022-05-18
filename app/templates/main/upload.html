@@ -1,5 +1,7 @@
+{% extends 'main/base.html'%}
 <!doctype html>
 <title>Python Flask File Upload Example</title>
+
 <input type="text" class="live-search-box" placeholder="search here" />
 
 
@@ -19,7 +21,7 @@
 </p>
 {% if filename %}
 	<div>
-		<img src="{{ url_for('display_image', filename=filename) }}">
+		<img src="{{url_for('static',filename='uploads/bgpic.jpg')}}">
 	</div>
 {% endif %}
 <form method="post" action="/" enctype="multipart/form-data">
