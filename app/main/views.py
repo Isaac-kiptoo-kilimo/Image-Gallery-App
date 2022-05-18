@@ -3,7 +3,7 @@ from . import main
 # from ..requests import 
 # from .forms import 
 
-from ..models import User,Image,Category
+from ..models import User,Image
 from .. import db,photos
 
 # from flask_login import login_required,current_user
