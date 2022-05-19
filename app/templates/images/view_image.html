@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %} {% block content %}
+<div class="container-fluid">
+  <div class="row m-4">
+    {% for image in images %}
+    <div class="col-md-3 my-2 mx-0">
+      <div class="img_card">
+       <a href="{{url_for('main.single_image',id_img=image.id)}}">
+        <img
+        src="/static/photos/{{image.img}}"
+        alt=""
+        
+        width="100%"
+      />
+       </a>
+        <div class="download m-2">
+          <a
+            class="btn btn-outline-info custom-btn"
+            href="/static/photos/{{image.img}}"
+            download
+            >download</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -12,7 +12,6 @@ class User(UserMixin,db.Model):
     fullname = db.Column(db.String(255), nullable=False)
     username = db.Column(db.String(255), unique=True, nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
-    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     bio = db.Column(db.String(1000))
     profile_pic_path = db.Column(db.String())
     password_secure = db.Column(db.String(255), nullable=False)
@@ -20,7 +19,7 @@ class User(UserMixin,db.Model):
     admin = db.Column(db.Boolean(), default=False)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
-    images = db.relationship('Image', backref='user', lazy=True)
+    images = db.relationship('Img', backref='user', lazy=True)
     reviews = db.relationship('Review', backref='user', lazy=True)
 
     
@@ -40,37 +39,40 @@ class User(UserMixin,db.Model):
     def __repr__(self):
       return self.fullname
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
 
 
-class Image(db.Model):
-    __tablename__='images'
+class Img(db.Model):
+    __tablename__= 'images'
     id=db.Column(db.Integer,primary_key=True)
+    img=db.Column(db.Text,unique=True,nullable=False)
+    mimetype=db.Column(db.Text)
     title=db.Column(db.String(255))
     imagename=db.Column(db.Text)
     content=db.Column(db.Text)
-    img=db.Column(db.Text,unique=True,nullable=False)
-    image_types=db.Column(db.Text)
-    size=db.Column(db.Integer)
-    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    size=db.Column(db.Integer)  
+    # category_id=db.Column(db.Integer,db.ForeignKey("categories.id"))
+    user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
     posted_at=db.Column(db.DateTime,default=datetime.utcnow)
 
     def __repr__(self):
-      return self.title
+      return self.imagename
 
-class Category(db.Model):
-    __tablename__= 'categories'
-    id=db.Column(db.Integer,primary_key=True)
-    name = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
-    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
-    images = db.relationship('Image', backref='category', lazy=True)
+# class Category(db.Model):
+#     __tablename__= 'categories'
+#     id=db.Column(db.Integer,primary_key=True)
+#     name = db.Column(db.String(255), nullable=False)
+#     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+#     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+#     images=db.relationship('Img', backref='images', lazy=True)
+    
 
-    def __repr__(self):
-      return self.name
+#     def __repr__(self):
+#       return self.name
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 class Review(db.Model):
