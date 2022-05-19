@@ -34,5 +34,18 @@ body{
         50% { transform: translateY(-10px); }
  }
 
+.loginform{
+    color: white;
+    height: 100vh;
+    
+}
 
+.login-form{
+    height: 100%;
+    background-color: #132A5D;
+}
+.addimage{
+    margin-top: 10px;
+    border: solid #39C0ED 2px;
+}
 

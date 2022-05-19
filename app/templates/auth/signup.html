@@ -8,25 +8,25 @@
 </div>
 {% endfor %}
 
-<div class="signup-form " >
-<form method="POST"  class="mx-auto w-50  mt-3 ">
+<div class="signup-form login-form" >
+<form method="POST"  class="mx-auto text-white w-50  pt-3 loginform{">
     {{ form.hidden_tag()}}
 <fieldset >
     <legend>Signup for an  Account</legend>
     <div class="form-group ">
-        {{form.username.label(class= "form-control-label")}}
+        {{form.username.label(class= "form-control-label ")}}
         {{form.username(class='form-control my-2',
         placeholder='username')}} 
-        {{form.fullname.label(class= "form-control-label")}}
+        {{form.fullname.label(class= "form-control-label ")}}
         {{form.fullname(class='form-control my-2',
         placeholder='fullname')}} 
         {{form.email.label(class= "form-control-label")}}
-        {{form.email(class='form-control my-2',placeholder='email')}}
+        {{form.email(class='form-control my-2 ',placeholder='email')}}
         {{form.password.label(class= "form-control-label")}}
         {{form.password(class='form-control my-2',placeholder='password')}}
-        {{form.password_confirm(class='form-control  my-2',placeholder='confirm password')}} 
+        {{form.password_confirm(class='form-control py-2',placeholder='confirm password')}} 
 
-        {{ form.submit(class='form-control text-dark btn-outline-info')}}
+        {{ form.submit(class='form-control mb-4 mt-2 text-dark btn-outline-info')}}
 
     </div>
 </fieldset>

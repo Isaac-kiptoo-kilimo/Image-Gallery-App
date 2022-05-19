@@ -17,13 +17,13 @@ from werkzeug.utils import secure_filename
 @main.route('/')
 def index():
     images=Img.query.all()
-    print('images available',images)
+    
     return render_template('main/index.html',images=images)
 
 @main.route('/view_image')
 def view_image():
     images=Img.query.all()
-    print('images available',images)
+    
     return render_template('images/view_image.html',images=images)
     
 
