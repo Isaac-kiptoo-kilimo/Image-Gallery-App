@@ -42,10 +42,10 @@ body{
 
 .login-form{
     height: 100%;
-    background-color: #132A5D;
+    background-color: #132A5D !important;
 }
 .addimage{
     margin-top: 10px;
-    border: solid #39C0ED 2px;
+    border: solid #39C0ED 2px !important;
 }
 
