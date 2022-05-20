@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<div class="signup-form login-form" >
+<form method="POST"  class="mx-auto text-white w-50  pt-3 loginform{">
+    {{ form.hidden_tag()}}
+<fieldset >
+    <legend>Signup for an  Account</legend>
+    <div class="form-group ">
+        {{form.username.label(class= "form-control-label ")}}
+        {{form.username(class='form-control my-2',
+        placeholder='username')}} 
+        {{form.fullname.label(class= "form-control-label ")}}
+        {{form.fullname(class='form-control my-2',
+        placeholder='fullname')}} 
+        {{form.email.label(class= "form-control-label")}}
+        {{form.email(class='form-control my-2 ',placeholder='email')}}
+        {{form.password.label(class= "form-control-label")}}
+        {{form.password(class='form-control my-2',placeholder='password')}}
+        {{form.password_confirm(class='form-control py-2',placeholder='confirm password')}} 
+
+        {{ form.submit(class='form-control mb-4 mt-2 text-dark btn-outline-info')}}
+
+    </div>
+</fieldset>
+</form>
+</div>
+
+
+{% endblock %}

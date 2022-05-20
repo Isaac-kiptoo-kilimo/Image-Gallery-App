@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<div class="container mb-5 w-50 addimage ms-auto">
+    <div class="my-4 text-info">
+        <h1>Add New Image</h1>
+    </div>
+    <div class="my-4">
+        <h4>Render Your Favourite Images to experience the best experience</h4>
+    </div>
+    <div class="my-3">
+        <h1>Upload new File</h1>
+    </div>
+    <form action="{{url_for('main.upload')}}"  method="post" enctype="multipart/form-data" class="mb-5">
+    <input type="file" class="form-group" name='photo' required>
+    <label for="">Add your image name </label>
+    <input type="" class="form-group" name='photo' required>
+    <label for="">Add small description </label>
+    <input type="" class="form-group" name='photo' required>
+    <input class="btn btn-info" type="submit" value="Upload">
+    </form>
+    
+</div>
+
+
+{% endblock %}

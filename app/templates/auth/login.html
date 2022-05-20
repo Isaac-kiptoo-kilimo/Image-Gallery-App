@@ -1,0 +1,30 @@
+{% extends 'main/base.html'%}
+
+{% block content%}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{message}}
+{% endfor %}
+
+
+<div class="login-form ">
+<form method="POST"action="" class="mx-4 pt-4 loginform mx-auto w-50 ">
+    {{ form.hidden_tag()}}
+<fieldset >
+    <legend>Login into your Account</legend>
+    <div class="form-group ">
+        {{form.email.label(class="form-control-label")}}
+        {{form.email(class='form-control',placeholder='email')}} <br>
+        {{form.password.label(class= "form-control-label")}}
+        {{form.password(class='form-control',placeholder='password')}} <br>
+        {{ form.submit(class='form-control btn-outline-info text-dark mb-2')}}
+
+    </div>
+</fieldset>
+<p> Don't have an account? <a id="sign" href="{{url_for('auth.signup')}}">Sign up here</a></p>
+</form>
+</div>
+
+
+{% endblock %}
