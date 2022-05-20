@@ -1,13 +1,51 @@
-body{
+.hero{
     background-attachment: fixed;
-    background: url(../photos/pexels-george-desipris-792381.jpg);
+    background: url(https://images.unsplash.com/photo-1581591524425-c7e0978865fc?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color: rgb(233, 224, 218);
-    min-height: 100vh; 
+    min-height: 80vh; 
     
 
 }
+body{
+    min-height: 100vh;
+    position: relative;
+    background-color: #F4F4F4;
+}
+.custom-footer{
+    margin-top: 50px;
+    position:absolute;
+    bottom:0;
+    width:100%;
+ }
+ .imageview:hover{
+    cursor: pointer;
+    -webkit-animation: mover 4s infinite  alternate;
+    animation: mover 4s infinite  alternate;
+    }
+    @-webkit-keyframes mover {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+    @keyframes mover {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+ }
 
+.loginform{
+    color: white;
+    height: 100vh;
+    
+}
+
+.login-form{
+    height: 100%;
+    background-color: #132A5D !important;
+}
+.addimage{
+    margin-top: 10px;
+    border: solid #39C0ED 2px !important;
+}
 
